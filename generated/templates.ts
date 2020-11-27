@@ -6,12 +6,12 @@ import {
   DataSourceContext
 } from "@graphprotocol/graph-ts";
 
-export class Dhedge extends DataSourceTemplate {
+export class DHedge extends DataSourceTemplate {
   static create(address: Address): void {
-    DataSourceTemplate.create("Dhedge", [address.toHex()]);
+    DataSourceTemplate.create("DHedge", [address.toHex()]);
   }
 
   static createWithContext(address: Address, context: DataSourceContext): void {
-    DataSourceTemplate.createWithContext("Dhedge", [address.toHex()], context);
+    DataSourceTemplate.createWithContext("DHedge", [address.toHex()], context);
   }
 }

@@ -3,11 +3,11 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: DhedgeFactory
+    name: DHedgeFactory
     network: mainnet
     source:
-      address: "0x03D20ef9bdc19736F5e8Baf92D02C8661a5941F7"
-      abi: DhedgeFactory
+      address: '0x03D20ef9bdc19736F5e8Baf92D02C8661a5941F7'
+      abi: DHedgeFactory
       startBlock: 11106315
     mapping:
       kind: ethereum/events
@@ -23,8 +23,8 @@ dataSources:
         - OwnershipTransferred
         - ProxyCreated
       abis:
-        - name: DhedgeFactory
-          file: ./abis/DhedgeFactory.json
+        - name: DHedgeFactory
+          file: ./abis/DHedgeFactory.json
       eventHandlers:
         - event: DaoAddressSet(address)
           handler: handleDaoAddressSet
@@ -45,10 +45,10 @@ dataSources:
       file: ./src/factory.ts
 templates:
   - kind: ethereum/contract
-    name: Dhedge
+    name: DHedge
     network: mainnet
     source:
-      abi: Dhedge
+      abi: DHedge
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -67,8 +67,8 @@ templates:
         - Withdrawal
         - Pool
       abis:
-        - name: Dhedge
-          file: ./abis/Dhedge.json
+        - name: DHedge
+          file: ./abis/DHedge.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
