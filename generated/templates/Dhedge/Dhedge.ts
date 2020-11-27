@@ -356,7 +356,7 @@ export class Withdrawal__Params {
   }
 }
 
-export class Dhedge__getFundSummaryResult {
+export class DHedge__getFundSummaryResult {
   value0: string;
   value1: BigInt;
   value2: BigInt;
@@ -412,7 +412,7 @@ export class Dhedge__getFundSummaryResult {
   }
 }
 
-export class Dhedge__getFundCompositionResult {
+export class DHedge__getFundCompositionResult {
   value0: Array<Bytes>;
   value1: Array<BigInt>;
   value2: Array<BigInt>;
@@ -436,7 +436,7 @@ export class Dhedge__getFundCompositionResult {
   }
 }
 
-export class Dhedge__getWaitingPeriodsResult {
+export class DHedge__getWaitingPeriodsResult {
   value0: Array<Bytes>;
   value1: Array<BigInt>;
 
@@ -453,7 +453,7 @@ export class Dhedge__getWaitingPeriodsResult {
   }
 }
 
-export class Dhedge__getSuspendedAssetsResult {
+export class DHedge__getSuspendedAssetsResult {
   value0: Array<Bytes>;
   value1: Array<boolean>;
 
@@ -470,7 +470,7 @@ export class Dhedge__getSuspendedAssetsResult {
   }
 }
 
-export class Dhedge__getManagerFeeResult {
+export class DHedge__getManagerFeeResult {
   value0: BigInt;
   value1: BigInt;
 
@@ -487,7 +487,7 @@ export class Dhedge__getManagerFeeResult {
   }
 }
 
-export class Dhedge__getExitFeeResult {
+export class DHedge__getExitFeeResult {
   value0: BigInt;
   value1: BigInt;
 
@@ -504,9 +504,9 @@ export class Dhedge__getExitFeeResult {
   }
 }
 
-export class Dhedge extends ethereum.SmartContract {
-  static bind(address: Address): Dhedge {
-    return new Dhedge("Dhedge", address);
+export class DHedge extends ethereum.SmartContract {
+  static bind(address: Address): DHedge {
+    return new DHedge("DHedge", address);
   }
 
   addressResolver(): Address {
@@ -1189,14 +1189,14 @@ export class Dhedge extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getFundSummary(): Dhedge__getFundSummaryResult {
+  getFundSummary(): DHedge__getFundSummaryResult {
     let result = super.call(
       "getFundSummary",
       "getFundSummary():(string,uint256,uint256,address,string,uint256,bool,uint256,uint256,uint256,uint256)",
       []
     );
 
-    return new Dhedge__getFundSummaryResult(
+    return new DHedge__getFundSummaryResult(
       result[0].toString(),
       result[1].toBigInt(),
       result[2].toBigInt(),
@@ -1211,7 +1211,7 @@ export class Dhedge extends ethereum.SmartContract {
     );
   }
 
-  try_getFundSummary(): ethereum.CallResult<Dhedge__getFundSummaryResult> {
+  try_getFundSummary(): ethereum.CallResult<DHedge__getFundSummaryResult> {
     let result = super.tryCall(
       "getFundSummary",
       "getFundSummary():(string,uint256,uint256,address,string,uint256,bool,uint256,uint256,uint256,uint256)",
@@ -1222,7 +1222,7 @@ export class Dhedge extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Dhedge__getFundSummaryResult(
+      new DHedge__getFundSummaryResult(
         value[0].toString(),
         value[1].toBigInt(),
         value[2].toBigInt(),
@@ -1261,14 +1261,14 @@ export class Dhedge extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytesArray());
   }
 
-  getFundComposition(): Dhedge__getFundCompositionResult {
+  getFundComposition(): DHedge__getFundCompositionResult {
     let result = super.call(
       "getFundComposition",
       "getFundComposition():(bytes32[],uint256[],uint256[])",
       []
     );
 
-    return new Dhedge__getFundCompositionResult(
+    return new DHedge__getFundCompositionResult(
       result[0].toBytesArray(),
       result[1].toBigIntArray(),
       result[2].toBigIntArray()
@@ -1276,7 +1276,7 @@ export class Dhedge extends ethereum.SmartContract {
   }
 
   try_getFundComposition(): ethereum.CallResult<
-    Dhedge__getFundCompositionResult
+    DHedge__getFundCompositionResult
   > {
     let result = super.tryCall(
       "getFundComposition",
@@ -1288,7 +1288,7 @@ export class Dhedge extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Dhedge__getFundCompositionResult(
+      new DHedge__getFundCompositionResult(
         value[0].toBytesArray(),
         value[1].toBigIntArray(),
         value[2].toBigIntArray()
@@ -1296,21 +1296,21 @@ export class Dhedge extends ethereum.SmartContract {
     );
   }
 
-  getWaitingPeriods(): Dhedge__getWaitingPeriodsResult {
+  getWaitingPeriods(): DHedge__getWaitingPeriodsResult {
     let result = super.call(
       "getWaitingPeriods",
       "getWaitingPeriods():(bytes32[],uint256[])",
       []
     );
 
-    return new Dhedge__getWaitingPeriodsResult(
+    return new DHedge__getWaitingPeriodsResult(
       result[0].toBytesArray(),
       result[1].toBigIntArray()
     );
   }
 
   try_getWaitingPeriods(): ethereum.CallResult<
-    Dhedge__getWaitingPeriodsResult
+    DHedge__getWaitingPeriodsResult
   > {
     let result = super.tryCall(
       "getWaitingPeriods",
@@ -1322,28 +1322,28 @@ export class Dhedge extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Dhedge__getWaitingPeriodsResult(
+      new DHedge__getWaitingPeriodsResult(
         value[0].toBytesArray(),
         value[1].toBigIntArray()
       )
     );
   }
 
-  getSuspendedAssets(): Dhedge__getSuspendedAssetsResult {
+  getSuspendedAssets(): DHedge__getSuspendedAssetsResult {
     let result = super.call(
       "getSuspendedAssets",
       "getSuspendedAssets():(bytes32[],bool[])",
       []
     );
 
-    return new Dhedge__getSuspendedAssetsResult(
+    return new DHedge__getSuspendedAssetsResult(
       result[0].toBytesArray(),
       result[1].toBooleanArray()
     );
   }
 
   try_getSuspendedAssets(): ethereum.CallResult<
-    Dhedge__getSuspendedAssetsResult
+    DHedge__getSuspendedAssetsResult
   > {
     let result = super.tryCall(
       "getSuspendedAssets",
@@ -1355,7 +1355,7 @@ export class Dhedge extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Dhedge__getSuspendedAssetsResult(
+      new DHedge__getSuspendedAssetsResult(
         value[0].toBytesArray(),
         value[1].toBooleanArray()
       )
@@ -1400,20 +1400,20 @@ export class Dhedge extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  getManagerFee(): Dhedge__getManagerFeeResult {
+  getManagerFee(): DHedge__getManagerFeeResult {
     let result = super.call(
       "getManagerFee",
       "getManagerFee():(uint256,uint256)",
       []
     );
 
-    return new Dhedge__getManagerFeeResult(
+    return new DHedge__getManagerFeeResult(
       result[0].toBigInt(),
       result[1].toBigInt()
     );
   }
 
-  try_getManagerFee(): ethereum.CallResult<Dhedge__getManagerFeeResult> {
+  try_getManagerFee(): ethereum.CallResult<DHedge__getManagerFeeResult> {
     let result = super.tryCall(
       "getManagerFee",
       "getManagerFee():(uint256,uint256)",
@@ -1424,20 +1424,20 @@ export class Dhedge extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Dhedge__getManagerFeeResult(value[0].toBigInt(), value[1].toBigInt())
+      new DHedge__getManagerFeeResult(value[0].toBigInt(), value[1].toBigInt())
     );
   }
 
-  getExitFee(): Dhedge__getExitFeeResult {
+  getExitFee(): DHedge__getExitFeeResult {
     let result = super.call("getExitFee", "getExitFee():(uint256,uint256)", []);
 
-    return new Dhedge__getExitFeeResult(
+    return new DHedge__getExitFeeResult(
       result[0].toBigInt(),
       result[1].toBigInt()
     );
   }
 
-  try_getExitFee(): ethereum.CallResult<Dhedge__getExitFeeResult> {
+  try_getExitFee(): ethereum.CallResult<DHedge__getExitFeeResult> {
     let result = super.tryCall(
       "getExitFee",
       "getExitFee():(uint256,uint256)",
@@ -1448,7 +1448,7 @@ export class Dhedge extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new Dhedge__getExitFeeResult(value[0].toBigInt(), value[1].toBigInt())
+      new DHedge__getExitFeeResult(value[0].toBigInt(), value[1].toBigInt())
     );
   }
 

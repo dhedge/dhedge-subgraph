@@ -194,7 +194,7 @@ export class ProxyCreated__Params {
   }
 }
 
-export class DhedgeFactory__getDaoFeeResult {
+export class DHedgeFactory__getDaoFeeResult {
   value0: BigInt;
   value1: BigInt;
 
@@ -211,7 +211,7 @@ export class DhedgeFactory__getDaoFeeResult {
   }
 }
 
-export class DhedgeFactory__getPoolManagerFeeResult {
+export class DHedgeFactory__getPoolManagerFeeResult {
   value0: BigInt;
   value1: BigInt;
 
@@ -228,7 +228,7 @@ export class DhedgeFactory__getPoolManagerFeeResult {
   }
 }
 
-export class DhedgeFactory__getMaximumManagerFeeResult {
+export class DHedgeFactory__getMaximumManagerFeeResult {
   value0: BigInt;
   value1: BigInt;
 
@@ -245,7 +245,7 @@ export class DhedgeFactory__getMaximumManagerFeeResult {
   }
 }
 
-export class DhedgeFactory__getExitFeeResult {
+export class DHedgeFactory__getExitFeeResult {
   value0: BigInt;
   value1: BigInt;
 
@@ -262,9 +262,9 @@ export class DhedgeFactory__getExitFeeResult {
   }
 }
 
-export class DhedgeFactory extends ethereum.SmartContract {
-  static bind(address: Address): DhedgeFactory {
-    return new DhedgeFactory("DhedgeFactory", address);
+export class DHedgeFactory extends ethereum.SmartContract {
+  static bind(address: Address): DHedgeFactory {
+    return new DHedgeFactory("DHedgeFactory", address);
   }
 
   addressResolver(): Address {
@@ -520,16 +520,16 @@ export class DhedgeFactory extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  getDaoFee(): DhedgeFactory__getDaoFeeResult {
+  getDaoFee(): DHedgeFactory__getDaoFeeResult {
     let result = super.call("getDaoFee", "getDaoFee():(uint256,uint256)", []);
 
-    return new DhedgeFactory__getDaoFeeResult(
+    return new DHedgeFactory__getDaoFeeResult(
       result[0].toBigInt(),
       result[1].toBigInt()
     );
   }
 
-  try_getDaoFee(): ethereum.CallResult<DhedgeFactory__getDaoFeeResult> {
+  try_getDaoFee(): ethereum.CallResult<DHedgeFactory__getDaoFeeResult> {
     let result = super.tryCall(
       "getDaoFee",
       "getDaoFee():(uint256,uint256)",
@@ -540,21 +540,21 @@ export class DhedgeFactory extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new DhedgeFactory__getDaoFeeResult(
+      new DHedgeFactory__getDaoFeeResult(
         value[0].toBigInt(),
         value[1].toBigInt()
       )
     );
   }
 
-  getPoolManagerFee(pool: Address): DhedgeFactory__getPoolManagerFeeResult {
+  getPoolManagerFee(pool: Address): DHedgeFactory__getPoolManagerFeeResult {
     let result = super.call(
       "getPoolManagerFee",
       "getPoolManagerFee(address):(uint256,uint256)",
       [ethereum.Value.fromAddress(pool)]
     );
 
-    return new DhedgeFactory__getPoolManagerFeeResult(
+    return new DHedgeFactory__getPoolManagerFeeResult(
       result[0].toBigInt(),
       result[1].toBigInt()
     );
@@ -562,7 +562,7 @@ export class DhedgeFactory extends ethereum.SmartContract {
 
   try_getPoolManagerFee(
     pool: Address
-  ): ethereum.CallResult<DhedgeFactory__getPoolManagerFeeResult> {
+  ): ethereum.CallResult<DHedgeFactory__getPoolManagerFeeResult> {
     let result = super.tryCall(
       "getPoolManagerFee",
       "getPoolManagerFee(address):(uint256,uint256)",
@@ -573,28 +573,28 @@ export class DhedgeFactory extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new DhedgeFactory__getPoolManagerFeeResult(
+      new DHedgeFactory__getPoolManagerFeeResult(
         value[0].toBigInt(),
         value[1].toBigInt()
       )
     );
   }
 
-  getMaximumManagerFee(): DhedgeFactory__getMaximumManagerFeeResult {
+  getMaximumManagerFee(): DHedgeFactory__getMaximumManagerFeeResult {
     let result = super.call(
       "getMaximumManagerFee",
       "getMaximumManagerFee():(uint256,uint256)",
       []
     );
 
-    return new DhedgeFactory__getMaximumManagerFeeResult(
+    return new DHedgeFactory__getMaximumManagerFeeResult(
       result[0].toBigInt(),
       result[1].toBigInt()
     );
   }
 
   try_getMaximumManagerFee(): ethereum.CallResult<
-    DhedgeFactory__getMaximumManagerFeeResult
+    DHedgeFactory__getMaximumManagerFeeResult
   > {
     let result = super.tryCall(
       "getMaximumManagerFee",
@@ -606,23 +606,23 @@ export class DhedgeFactory extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new DhedgeFactory__getMaximumManagerFeeResult(
+      new DHedgeFactory__getMaximumManagerFeeResult(
         value[0].toBigInt(),
         value[1].toBigInt()
       )
     );
   }
 
-  getExitFee(): DhedgeFactory__getExitFeeResult {
+  getExitFee(): DHedgeFactory__getExitFeeResult {
     let result = super.call("getExitFee", "getExitFee():(uint256,uint256)", []);
 
-    return new DhedgeFactory__getExitFeeResult(
+    return new DHedgeFactory__getExitFeeResult(
       result[0].toBigInt(),
       result[1].toBigInt()
     );
   }
 
-  try_getExitFee(): ethereum.CallResult<DhedgeFactory__getExitFeeResult> {
+  try_getExitFee(): ethereum.CallResult<DHedgeFactory__getExitFeeResult> {
     let result = super.tryCall(
       "getExitFee",
       "getExitFee():(uint256,uint256)",
@@ -633,7 +633,7 @@ export class DhedgeFactory extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new DhedgeFactory__getExitFeeResult(
+      new DHedgeFactory__getExitFeeResult(
         value[0].toBigInt(),
         value[1].toBigInt()
       )
