@@ -29,9 +29,7 @@ This subgraph dynamically tracks any fund created by the dHEDGE factory. It trac
 
 ```graphql
 {
-  pools(where:{
-    name:"Pool 1"
-  }) {
+  pools(where: { name: "Pool 1" }) {
     id
     fundAddress
     name
@@ -59,6 +57,18 @@ This subgraph dynamically tracks any fund created by the dHEDGE factory. It trac
       fundTokensWithdrawn
       time
     }
+  }
+}
+```
+
+### Rates
+
+```graphql
+{
+  rateUpdates(orderBy: block, orderDirection: desc, where: { synth: "sETH" }) {
+    block
+    synth
+    rate
   }
 }
 ```
