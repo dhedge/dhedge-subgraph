@@ -1,16 +1,16 @@
-import { RatesUpdated as RatesUpdatedEvent } from "../generated/ExchangeRates_v223/ExchangeRates";
-import { AnswerUpdated as AnswerUpdatedEvent } from "../generated/AggregatorAUD/Aggregator";
-import { AddressResolver } from "../generated/AggregatorAUD_3/AddressResolver";
-import { ExchangeRates } from "../generated/ExchangeRates/ExchangeRates";
+import { RatesUpdated as RatesUpdatedEvent } from '../generated/ExchangeRates_v223/ExchangeRates';
+import { AnswerUpdated as AnswerUpdatedEvent } from '../generated/AggregatorAUD/Aggregator';
+import { AddressResolver } from '../generated/AggregatorAUD_3/AddressResolver';
+import { ExchangeRates } from '../generated/ExchangeRates/ExchangeRates';
 
 import {
   RatesUpdated,
   RateUpdate,
   AggregatorAnswer,
   LatestRate,
-} from "../generated/schema";
+} from '../generated/schema';
 
-import { contractsToProxies, contracts } from "./contractsData";
+import { contractsToProxies, contracts } from './contractsData';
 
 import {
   ByteArray,
@@ -18,14 +18,14 @@ import {
   BigInt,
   Address,
   log,
-} from "@graphprotocol/graph-ts";
+} from '@graphprotocol/graph-ts';
 
 export function handleRatesUpdated(event: RatesUpdatedEvent): void {
-  addDollar("sUSD");
-  addDollar("nUSD");
+  addDollar('sUSD');
+  addDollar('nUSD');
 
   let entity = new RatesUpdated(
-    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    event.transaction.hash.toHex() + '-' + event.logIndex.toString()
   );
   entity.currencyKeys = event.params.currencyKeys;
   entity.newRates = event.params.newRates;
@@ -40,9 +40,9 @@ export function handleRatesUpdated(event: RatesUpdatedEvent): void {
   let rates = entity.newRates;
   // now save each individual update
   for (let i = 0; i < entity.currencyKeys.length; i++) {
-    if (keys[i].toString() != "") {
+    if (keys[i].toString() != '') {
       let rateEntity = new RateUpdate(
-        event.transaction.hash.toHex() + "-" + keys[i].toString()
+        event.transaction.hash.toHex() + '-' + keys[i].toString()
       );
       rateEntity.block = event.block.number;
       rateEntity.timestamp = event.block.timestamp;
@@ -61,7 +61,7 @@ function createRates(
   rate: BigInt
 ): void {
   let entity = new AggregatorAnswer(
-    event.transaction.hash.toHex() + "-" + currencyKey.toString()
+    event.transaction.hash.toHex() + '-' + currencyKey.toString()
   );
   entity.block = event.block.number;
   entity.timestamp = event.block.timestamp;
@@ -77,7 +77,7 @@ function createRates(
   // save aggregated event as rate update from v2.17.5 (Procyon)
   if (event.block.number > BigInt.fromI32(9123410)) {
     let rateEntity = new RateUpdate(
-      event.transaction.hash.toHex() + "-" + entity.synth
+      event.transaction.hash.toHex() + '-' + entity.synth
     );
     rateEntity.block = entity.block;
     rateEntity.timestamp = entity.timestamp;
@@ -93,12 +93,13 @@ export function handleAggregatorAnswerUpdated(event: AnswerUpdatedEvent): void {
   // From Pollux on, use the ExchangeRates to get the currency keys that use this aggregator
   if (event.block.number > BigInt.fromI32(10773070)) {
     // Note: hard coding the latest ReadProxyAddressResolver address
-    let readProxyAdressResolver = "0x4E3b31eB0E5CB73641EE1E65E7dCEFe520bA3ef2";
+    let readProxyAdressResolver = '0x4E3b31eB0E5CB73641EE1E65E7dCEFe520bA3ef2';
     let resolver = AddressResolver.bind(
       Address.fromHexString(readProxyAdressResolver) as Address
     );
     let exrates = ExchangeRates.bind(
-      resolver.getAddress(strToBytes("ExchangeRates", 32))
+      // resolver.getAddress(strToBytes("ExchangeRates", 32))
+      resolver.getAddress(ByteArray.fromUTF8('ExchangeRates') as Bytes)
     );
 
     let tryCurrencyKeys = exrates.try_currenciesUsingAggregator(
@@ -110,7 +111,7 @@ export function handleAggregatorAnswerUpdated(event: AnswerUpdatedEvent): void {
 
     if (tryCurrencyKeys.reverted) {
       log.debug(
-        "currenciesUsingAggregator was reverted in tx hash: {}, from block: {}",
+        'currenciesUsingAggregator was reverted in tx hash: {}, from block: {}',
         [event.transaction.hash.toHex(), event.block.number.toString()]
       );
       return;
@@ -120,7 +121,7 @@ export function handleAggregatorAnswerUpdated(event: AnswerUpdatedEvent): void {
     // for each currency key using this aggregator
     for (let i = 0; i < currencyKeys.length; i++) {
       // create an answer entity for the non-zero entries
-      if (currencyKeys[i].toString() != "") {
+      if (currencyKeys[i].toString() != '') {
         createRates(
           event,
           currencyKeys[i],
