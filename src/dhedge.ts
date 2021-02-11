@@ -26,7 +26,7 @@ import {
   Withdrawal,
   Pool,
 } from '../generated/schema';
-import { dataSource } from '@graphprotocol/graph-ts';
+import { dataSource, log } from '@graphprotocol/graph-ts';
 
 export function handleApproval(event: ApprovalEvent): void {
   let entity = new Approval(
@@ -105,19 +105,44 @@ export function handleExchange(event: ExchangeEvent): void {
     pool.fundAddress = event.params.fundAddress;
   }
 
+  let totalFundValueCall = contract.try_totalFundValue();
+  if (totalFundValueCall.reverted) {
+    log.info("totalFundValueCallreverted", [])
+    log.info('event address: {}', [event.address.toHexString()]);
+    return;
+  } else {
+    pool.fundValue = totalFundValueCall.value;
+  }
+
+  let tokenPriceCall = contract.try_tokenPrice();
+  if (tokenPriceCall.reverted) {
+    log.info("tokenPriceCall reverted", [])
+    log.info('event address: {}', [event.address.toHexString()]);
+    return;
+  } else {
+    pool.tokenPrice = tokenPriceCall.value;
+  }
+
   pool.name = contract.name();
   pool.manager = contract.manager();
   pool.managerName = contract.managerName();
-  pool.fundValue = contract.totalFundValue();
   pool.totalSupply = contract.totalSupply();
   pool.isPrivatePool = contract.privatePool();
-  pool.tokenPrice = contract.tokenPrice();
   pool.save();
+
+
+  let entityTotalFundValueCall = contract.try_totalFundValue();
+  if (entityTotalFundValueCall.reverted) {
+    log.info("entity totalFundValue reverted", [])
+    log.info('event address: {}', [event.address.toHexString()]);
+    return;
+  } else {
+    entity.fundValue = entityTotalFundValueCall.value
+  }
 
   entity.fundAddress = event.params.fundAddress;
   entity.totalSupply = contract.totalSupply();
   entity.manager = contract.manager();
-  entity.fundValue = contract.totalFundValue();
   entity.sourceKey = event.params.sourceKey;
   entity.sourceAmount = event.params.sourceAmount;
   entity.destinationKey = event.params.destinationKey;
