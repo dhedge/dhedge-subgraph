@@ -80,6 +80,7 @@ type Deposit @entity {
   totalSupply: BigInt! # uint256
   time: BigInt! # uint256
   manager: Bytes! # address
+  blockNumber: Int!
   pool: Pool!
 }
 
@@ -94,6 +95,7 @@ type Exchange @entity {
   time: BigInt! # uint256
   totalSupply: BigInt! # uint256
   fundValue: BigInt! # uint256
+  blockNumber: Int!
   pool: Pool!
 }
 

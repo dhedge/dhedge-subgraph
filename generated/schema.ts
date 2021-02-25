@@ -716,6 +716,15 @@ export class Deposit extends Entity {
     this.set("manager", Value.fromBytes(value));
   }
 
+  get blockNumber(): i32 {
+    let value = this.get("blockNumber");
+    return value.toI32();
+  }
+
+  set blockNumber(value: i32) {
+    this.set("blockNumber", Value.fromI32(value));
+  }
+
   get pool(): string {
     let value = this.get("pool");
     return value.toString();
@@ -835,6 +844,15 @@ export class Exchange extends Entity {
 
   set fundValue(value: BigInt) {
     this.set("fundValue", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): i32 {
+    let value = this.get("blockNumber");
+    return value.toI32();
+  }
+
+  set blockNumber(value: i32) {
+    this.set("blockNumber", Value.fromI32(value));
   }
 
   get pool(): string {
