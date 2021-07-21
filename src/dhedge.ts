@@ -25,6 +25,7 @@ import {
   Transfer,
   Withdrawal,
   Pool,
+  Investor
 } from '../generated/schema';
 import { dataSource, log, BigInt, BigDecimal } from '@graphprotocol/graph-ts';
 
@@ -79,6 +80,15 @@ export function handleDeposit(event: DepositEvent): void {
   pool.tokenPrice = contract.tokenPrice();
   pool.save();
 
+  // on deposits, load or create an Investor entity
+  let investorAddress = event.params.investor.toHexString()
+  let investor = Investor.load(investorAddress)
+  if (!investor) {
+    investor = new Investor(investorAddress)
+    investor.investorAddress = event.params.investor;
+  }
+  investor.save();
+
   entity.fundAddress = event.params.fundAddress;
   entity.totalSupply = contract.totalSupply();
   entity.manager = contract.manager();
@@ -90,6 +100,7 @@ export function handleDeposit(event: DepositEvent): void {
   entity.time = event.params.time;
   entity.blockNumber = event.block.number.toI32();
   entity.pool = pool.id;
+  entity.uniqueInvestor = investor.id;
   entity.save();
 }
 
@@ -248,6 +259,14 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
   pool.tokenPrice = contract.tokenPrice();
   pool.save();
 
+  let investorAddress = event.params.investor.toHexString()
+  let investor = Investor.load(investorAddress)
+  if (!investor) {
+    investor = new Investor(investorAddress)
+    investor.investorAddress = event.params.investor;
+  }
+  investor.save();
+
   entity.fundAddress = event.params.fundAddress;
   entity.totalSupply = contract.totalSupply();
   entity.manager = contract.manager();
@@ -258,5 +277,6 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
   entity.fundValue = event.params.fundValue;
   entity.time = event.params.time;
   entity.pool = pool.id;
+  entity.uniqueInvestor = investor.id;
   entity.save();
 }
