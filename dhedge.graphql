@@ -169,7 +169,6 @@ type Pool @entity {
   isPrivatePool: Boolean! # bool
 }
 
-# we update investors on Deposits and Withdrawals
 type Investor @entity {
   id: ID!
   investorAddress: Bytes! # address
