@@ -3,8 +3,6 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
-    "codegen:dhedge": "npm run codegen -- subgraphs/dhedge.yaml",
-    "codegen:rates": "npm run codegen -- subgraphs/rates.yaml",
     "build": "graph build",
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ dhedge/dhedge",
     "create-local": "graph create --node http://localhost:8020/ dhedge/dhedge",
@@ -12,7 +10,7 @@
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dhedge/dhedge"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.18.0",
-    "@graphprotocol/graph-ts": "0.18.0"
+    "@graphprotocol/graph-cli": "0.20.0",
+    "@graphprotocol/graph-ts": "0.20.0"
   }
 }
