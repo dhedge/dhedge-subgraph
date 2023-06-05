@@ -10,7 +10,7 @@
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dhedge/dhedge"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.20.0",
-    "@graphprotocol/graph-ts": "0.20.0"
+    "@graphprotocol/graph-cli": "^0.44.0",
+    "@graphprotocol/graph-ts": "^0.29.3"
   }
 }
