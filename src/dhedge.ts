@@ -11,7 +11,7 @@ import {
   Transfer as TransferEvent,
   Withdrawal as WithdrawalEvent,
   DHedge,
-} from '../generated/templates/Dhedge/Dhedge';
+} from '../generated/templates/DHedge/DHedge';
 import {
   Approval,
   AssetAdded,

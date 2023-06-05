@@ -7,7 +7,7 @@ import {
   MaximumSupportedAssetCountSet as MaximumSupportedAssetCountSetEvent,
   OwnershipTransferred as OwnershipTransferredEvent,
   ProxyCreated as ProxyCreatedEvent,
-} from '../generated/DhedgeFactory/DhedgeFactory';
+} from '../generated/DHedgeFactory/DHedgeFactory';
 import {
   DaoAddressSet,
   DaoFeeSet,
