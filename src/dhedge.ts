@@ -280,5 +280,6 @@ export function handleWithdrawal(event: WithdrawalEvent): void {
   entity.time = event.params.time;
   entity.pool = pool.id;
   entity.uniqueInvestor = investor.id;
+  entity.block = event.block.number.toI32();
   entity.save();
 }
