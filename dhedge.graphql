@@ -155,6 +155,7 @@ type Withdrawal @entity {
   manager: Bytes! # address
   pool: Pool!
   uniqueInvestor: Investor!
+  block: Int!
 }
 
 type Pool @entity {
