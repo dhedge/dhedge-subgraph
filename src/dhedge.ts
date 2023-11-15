@@ -237,6 +237,7 @@ export function handleTransfer(event: TransferEvent): void {
   entity.value = event.params.value;
   entity.address = event.address.toHexString();
   entity.block = event.block.number.toI32();
+  entity.blockTimestamp = event.block.timestamp
   entity.save();
 }
 
